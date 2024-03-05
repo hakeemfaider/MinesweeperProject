@@ -72,16 +72,14 @@ def play_turn_board(board, row_check, col_check):
 
 #Checking for win
 def check_win(board):
+    # print(board)
     game_status = True #initialising boolean data type initially as win, because they haven't done anything to lose yet
 
     if 'O' in board:
         game_status = False #doesn't necessarily mean they have lost, they just have not played enough turns to determine the result
 
-    elif ' ' in board:
-        game_status = False #doesn't necessarily mean they have lost, they just have not played enough turns to determine the result
-
-    elif '#' in board:
-        game_status = False #they hit a mine, hence they lost the game
+    # elif '#' in board:
+    #     game_status = False #they hit a mine, hence they lost the game
 
     return game_status
 
@@ -103,3 +101,5 @@ def play_game(positions):
         elif check_win(board):
             print("Congratulations, you won!")
             break
+
+#the code works now !!
