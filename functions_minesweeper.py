@@ -1,10 +1,22 @@
 #Creating the board (initialisation)
 def initialise_board():
+    '''
+    Arguments (Inputs): N/A
+    Returns (Outputs): A 1x25 row list, therefore total of 25 items which each item being a string 'O' (capital letter O, not number)
+    Pre-conditions: ??
+    Post-conditions:??
+    '''
     board = ['O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O']
     return board
 
-#printing the board into 5x5 matrix
+#printing the board into 5x5 matrix (Ensuring its hidden)
 def display_board(board):
+    '''
+    Arguments (Inputs):The list from previous function (1x225)
+    Returns (Outputs): N/A however a board which the user can see without mines ('X')
+    Pre-conditions: ???
+    Post-conditions: ???
+    '''
     user_board = [] #initialising the list which will be updated version of the official board but with mines hidden
     for imposter in board: #iterating through the original, and offical board
         if imposter == 'X':
@@ -21,6 +33,14 @@ def display_board(board):
 
 #adding the mines to the board
 def insert_mines(board, positions):
+    '''
+    Arguments (Inputs):
+    - The 1x25 row list representing the board
+    - A nested list representing the mine location in the format (row, column)
+    Returns (Outputs): N/A The output just adds the mine to the list but the user will not able to see the mines as the display_board function hides the mines ('X')
+    Pre-conditions: ???
+    Post-conditions: ???
+    '''
     for i in range(len(positions)):
         position = positions[i]
         row = position[0]
@@ -29,8 +49,17 @@ def insert_mines(board, positions):
         board[location] = 'X'
     return board
 
-#counting adjacent mines
+#counting adjacent mines using simple linear algorithm
 def count_adjacent_mines(board, row_check, col_check):
+    '''
+    Arguments (Inputs):
+    - The 1x25 row list representing the board
+    - an integer representation the ROW within range (0:4) 0 and 4 inclusive
+    - an int representation with the COLUMN within range (0:4) 0 and 4 inclusive
+    Returns (Outputs): An int number indicating the number of adjacent lines to that respective row and column position
+    Pre-conditions: ???
+    Post-conditions: ???
+    '''
     mine_count = 0
     position_to_check = (5 * row_check) + col_check
 
@@ -56,6 +85,17 @@ def count_adjacent_mines(board, row_check, col_check):
 
 #Playing a turn
 def play_turn_board(board, row_check, col_check):
+    '''
+    Arguments (Inputs):
+    - The 1x25 row list representing the board
+    - an integer representation the ROW within range (0:4) 0 and 4 inclusive
+    - an int representation with the COLUMN within range (0:4) 0 and 4 inclusive
+    Returns (Outputs):
+    - An int list of the updated board
+    - An bool variable type True or False if the mine was selected or not respectively
+    Pre-conditions: ???
+    Post-conditions: ???
+    '''
     position_to_check = (5 * row_check) + col_check
     mine_count = count_adjacent_mines(board, row_check, col_check)
     mine_selected = False #initialising boolean variable, as initially no mine would have been chosen
@@ -70,9 +110,16 @@ def play_turn_board(board, row_check, col_check):
 
     return board, mine_selected
 
-#Checking for win
+#Checking for if the user has beat the game
 def check_win(board):
-    # print(board)
+    '''
+    Arguments (Inputs):
+    - The 1x25 row list representing the board
+    Returns (Outputs):
+    - a boolean variable type true or false if the game has been won and lost respectively
+    Pre-conditions: ???
+    Post-conditions: ???
+    '''
     game_status = True #initialising boolean data type initially as win, because they haven't done anything to lose yet
 
     if 'O' in board:
@@ -83,8 +130,16 @@ def check_win(board):
 
     return game_status
 
-#playing the game entirely
+#playing the game entirely (putting all functions together, asking the user for input(s) etc)
 def play_game(positions):
+    '''
+    Arguments (Inputs):
+    - nested list indicating positions where you want the mines to be placed
+    Returns (Outputs):
+    - N/A just returns all the functions and the game is ready to be played
+    Pre-conditions: ???
+    Post-conditions: ???
+    '''
     board = initialise_board()
     display_board(board) #using the complimentary function
     insert_mines(board, positions)
@@ -101,5 +156,3 @@ def play_game(positions):
         elif check_win(board):
             print("Congratulations, you won!")
             break
-
-#the code works now !!
