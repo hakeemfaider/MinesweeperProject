@@ -1,10 +1,14 @@
 #Creating the board (initialisation)
 def initialise_board():
     '''
-    Arguments (Inputs): N/A
-    Returns (Outputs): A 1x25 row list, therefore total of 25 items which each item being a string 'O' (capital letter O, not number)
-    Pre-conditions: ??
-    Post-conditions:??
+    Arguments (Inputs):
+     - N/A
+    Returns (Outputs):
+     - A 1x25 row list, therefore total of 25 items which each item being a string 'O' (capital letter O, not number)
+    Pre-conditions:
+     - N/A
+    Post-conditions:
+     - The output must be a list containing 25 items (length 25), each element must be a string data type (str)
     '''
     board = ['O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O']
     return board
@@ -12,10 +16,16 @@ def initialise_board():
 #printing the board into 5x5 matrix (Ensuring its hidden)
 def display_board(board):
     '''
-    Arguments (Inputs):The list from previous function (1x225)
-    Returns (Outputs): N/A however a board which the user can see without mines ('X')
-    Pre-conditions: ???
-    Post-conditions: ???
+    Arguments (Inputs):
+    - The list from previous function (1x25)
+    Returns (Outputs):
+    - N/A however a board which the user can see without mines ('X')
+    Pre-conditions:
+    - The board must be a list containing 25 items (length 25), each element must be a string data type (str)
+    Post-conditions:
+    - The new board has a linear relationship of going from row,columns to the 1x25 row list as (5 * row) + column
+    - where row value must be 0 <= row <= 4
+    - where column value must be 0 <= column <= 4
     '''
     user_board = [] #initialising the list which will be updated version of the official board but with mines hidden
     for imposter in board: #iterating through the original, and offical board
@@ -37,9 +47,15 @@ def insert_mines(board, positions):
     Arguments (Inputs):
     - The 1x25 row list representing the board
     - A nested list representing the mine location in the format (row, column)
-    Returns (Outputs): N/A The output just adds the mine to the list but the user will not able to see the mines as the display_board function hides the mines ('X')
-    Pre-conditions: ???
-    Post-conditions: ???
+    Returns (Outputs):
+    - N/A The output just adds the mine to the list but the user will not able to see the mines as the display_board function hides the mines ('X')
+    Pre-conditions:
+    - The board must be a list containing 25 items (length 25), each element must be a string data type (str)
+    - where row input value must be 0 <= row <= 4
+    - where column input value must be 0 <= column <= 4
+    Post-conditions:
+    - amount of mines < 25 as that's the size of the board
+    - The new board has a linear relationship of going from row,columns to the 1x25 row list as (5 * row) + column
     '''
     for i in range(len(positions)):
         position = positions[i]
@@ -57,8 +73,12 @@ def count_adjacent_mines(board, row_check, col_check):
     - an integer representation the ROW within range (0:4) 0 and 4 inclusive
     - an int representation with the COLUMN within range (0:4) 0 and 4 inclusive
     Returns (Outputs): An int number indicating the number of adjacent lines to that respective row and column position
-    Pre-conditions: ???
-    Post-conditions: ???
+    Pre-conditions:
+    - The board must be a list containing 25 items (length 25), each element must be a string data type (str)
+    - where row input value must be 0 <= row <= 4
+    - where column input value must be 0 <= column <= 4
+    Post-conditions:
+    - the adjacent mines no. at the position must be <= 4 (as we are not accounting for diagonal)
     '''
     mine_count = 0
     position_to_check = (5 * row_check) + col_check
@@ -93,8 +113,14 @@ def play_turn_board(board, row_check, col_check):
     Returns (Outputs):
     - An int list of the updated board
     - An bool variable type True or False if the mine was selected or not respectively
-    Pre-conditions: ???
-    Post-conditions: ???
+    Pre-conditions:
+    - The board must be a list containing 25 items (length 25), each element must be a string data type (str)
+    - where row input value must be 0 <= row <= 4
+    - where column input value must be 0 <= column <= 4
+    Post-conditions:
+    - Boolean variable can only be true or false
+    - The board must contain 25 items (length 25), with each element being a string (str)
+    - The board has a linear relationship of going from row,columns to the 1x25 row list as (5 * row) + column
     '''
     position_to_check = (5 * row_check) + col_check
     mine_count = count_adjacent_mines(board, row_check, col_check)
@@ -117,8 +143,10 @@ def check_win(board):
     - The 1x25 row list representing the board
     Returns (Outputs):
     - a boolean variable type true or false if the game has been won and lost respectively
-    Pre-conditions: ???
-    Post-conditions: ???
+    Pre-conditions:
+    - The board must be a list containing 25 items (length 25), each element must be a string data type (str)
+    Post-conditions:
+    - Boolean variable can only be true or false
     '''
     game_status = True #initialising boolean data type initially as win, because they haven't done anything to lose yet
 
@@ -137,8 +165,18 @@ def play_game(positions):
     - nested list indicating positions where you want the mines to be placed
     Returns (Outputs):
     - N/A just returns all the functions and the game is ready to be played
-    Pre-conditions: ???
-    Post-conditions: ???
+    Pre-conditions
+    - The board must be a list containing 25 items (length 25), each element must be a string data type (str)
+    - where row input value must be 0 <= row <= 4
+    - where column input value must be 0 <= column <= 4
+    - the user must enter a row and column respectively in the format: "1 2" (ensuring they're within range of the 5x5 grid)
+    Post-conditions:
+    - The board must contain 25 items (length 25), with each element being a string (str)
+    - The mine(s) must be hidden (respective to how many mines were placed) (replaced with a 'O')
+    - The no. of adjacent mines must show (<= 4 is max) as the most possible adjacent mines in our context is 4
+    - There must be an empty ' ' (space) indicating a clear position with no adjacent mines (not including diagonally)
+    - There must be an input repeatingly asking for your row and column to play your turn UNTIL you either win or lose
+    - If you win there will be a kind message, elese a message saying try again!
     '''
     board = initialise_board()
     display_board(board) #using the complimentary function
