@@ -1,5 +1,5 @@
-#Creating the board (initialisation)
 def initialise_board():
+    # Creating the board (initialisation)
     '''
     Arguments (Inputs):
      - N/A
@@ -13,8 +13,8 @@ def initialise_board():
     board = ['O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O']
     return board
 
-#printing the board into 5x5 matrix (Ensuring its hidden)
 def display_board(board):
+    # Printing the board into 5x5 matrix (Ensuring its hidden)
     '''
     Arguments (Inputs):
     - The list from previous function (1x25)
@@ -41,8 +41,8 @@ def display_board(board):
     print(user_board[15:20])
     print(user_board[20:25])
 
-#adding the mines to the board
 def insert_mines(board, positions):
+    # Adding the mines to the board
     '''
     Arguments (Inputs):
     - The 1x25 row list representing the board
@@ -65,8 +65,8 @@ def insert_mines(board, positions):
         board[location] = 'X'
     return board
 
-#counting adjacent mines using simple linear algorithm
 def count_adjacent_mines(board, row_check, col_check):
+    # Counting adjacent mines using simple linear algorithm
     '''
     Arguments (Inputs):
     - The 1x25 row list representing the board
@@ -105,6 +105,7 @@ def count_adjacent_mines(board, row_check, col_check):
 
 #Playing a turn
 def play_turn_board(board, row_check, col_check):
+    # Playing a turn (entering row, columns to actually start playing minsweeper)
     '''
     Arguments (Inputs):
     - The 1x25 row list representing the board
@@ -138,6 +139,7 @@ def play_turn_board(board, row_check, col_check):
 
 #Checking for if the user has beat the game
 def check_win(board):
+    # Checking for if the user has beat the game
     '''
     Arguments (Inputs):
     - The 1x25 row list representing the board
@@ -158,8 +160,8 @@ def check_win(board):
 
     return game_status
 
-#playing the game entirely (putting all functions together, asking the user for input(s) etc)
 def play_game(positions):
+    # Playing the game entirely (putting all functions together, asking the user for input(s) etc)
     '''
     Arguments (Inputs):
     - nested list indicating positions where you want the mines to be placed
