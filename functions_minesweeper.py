@@ -61,7 +61,7 @@ def insert_mines(board, positions):
         position = positions[i]
         row = position[0]
         col = position[1]
-        location = (5 * row) + col
+        location = (5 * row) + col #using the linear relationship
         board[location] = 'X'
     return board
 
@@ -80,7 +80,7 @@ def count_adjacent_mines(board, row_check, col_check):
     Post-conditions:
     - the adjacent mines no. at the position must be <= 4 (as we are not accounting for diagonal)
     '''
-    mine_count = 0
+    mine_count = 0 #initalisaing mine count variable
     position_to_check = (5 * row_check) + col_check
 
     # Check the square above, if it exists
@@ -129,7 +129,7 @@ def play_turn_board(board, row_check, col_check):
 
     if board[position_to_check] == 'X':
         board[position_to_check] = '#'
-        mine_selected = True
+        mine_selected = True #boolean data type
     elif mine_count == 0:
         board[position_to_check] = ' '
     else:
