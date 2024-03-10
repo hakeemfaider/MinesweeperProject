@@ -63,7 +63,7 @@ def insert_mines(board, positions):
         col = position[1]
         location = (5 * row) + col #using the linear relationship
         board[location] = 'X'
-    return board
+    # return board
 
 def count_adjacent_mines(board, row_check, col_check):
     # Counting adjacent mines using simple linear algorithm
