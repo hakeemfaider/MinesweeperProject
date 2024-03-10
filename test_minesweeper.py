@@ -32,7 +32,7 @@ def test_count_adjacent_mines():
     mine_count = count_adjacent_mines(board, 2, 2)
     assert mine_count == 4
 
- def test_play_turn():
+def test_play_turn():
     board = ['O', 'O', 'O', 'O', 'O',
              'O', 'O', 'X', 'O', 'O',
              'O', 'X', 'O', 'X', 'O',
@@ -44,7 +44,7 @@ def test_count_adjacent_mines():
                      'O', 'X', 'O', 'X', 'O',
                      'O', 'O', 'X', 'O', 'O',
                      'O', 'O', 'O', 'O', '#',]
-    assert mine_selected == true
+    assert mine_selected == True
 
 
     # board is a segment of memory allocated from a bigger memory
