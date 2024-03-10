@@ -1,6 +1,6 @@
 import pytest
 from functions_minesweeper import *
-def test_count_adjacent_mines_in_corner():
+def test_count_adjacent_mines_in_corner(): #testing adjacent mines edge case
     board = ['X', 'O', 'O', 'O', 'O',
              'O', 'O', 'O', 'O', 'O',
              'O', 'O', 'O', 'O', 'O',
@@ -9,8 +9,7 @@ def test_count_adjacent_mines_in_corner():
     count = count_adjacent_mines(board,0,4)
     assert(count == 0)
 
-def test_insert_mines():
-    #write a single unit test insert mines
+def test_insert_mines(): #write a single unit test insert mines
     board = ['O', 'O', 'O', 'O', 'O',
              'O', 'O', 'O', 'O', 'O',
              'O', 'O', 'O', 'O', 'O',
@@ -38,7 +37,7 @@ def test_play_turn():
              'O', 'X', 'O', 'X', 'O',
              'O', 'O', 'X', 'O', 'O',
              'O', 'O', 'O', 'O', 'X',]
-    board, mine_selected = play_turn(board, 4,4)
+    board, mine_selected = play_turn_board(board, 4,4)
     assert board == ['O', 'O', 'O', 'O', 'O',
                      'O', 'O', 'X', 'O', 'O',
                      'O', 'X', 'O', 'X', 'O',
@@ -46,7 +45,13 @@ def test_play_turn():
                      'O', 'O', 'O', 'O', '#',]
     assert mine_selected == True
 
+def test_check_win():
+    board = ['_', '_', '1', '_', '_',
+             '_', '2', 'X', '2', '_',
+             '1', 'X', '4', 'X', '1',
+             '_', '2', 'X', '2', '1',
+             '_', '_', '1', '1', 'X',]
+    game_status = check_win(board)
+    assert game_status == True
 
-    # board is a segment of memory allocated from a bigger memory
-    # when u initialise board that's = to that memory segment
-    # when u call that board it then updates with the bottom
+#all single unit test(s) complete
